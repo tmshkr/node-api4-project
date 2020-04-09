@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const server = express();
 const userRouter = require("./users/userRouter");
@@ -8,11 +9,16 @@ server.use(logger);
 server.use(express.json());
 server.use(cors());
 
+// Serve static files from the React app
+server.use(express.static(path.join(__dirname, "client/build")));
+
 server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
 
-server.get("/", (req, res) => {
-  res.send(`<h2>Let's write some middleware!</h2>`);
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+server.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 server.use(errorHandler);

@@ -5,7 +5,7 @@ const server = express();
 const userRouter = require("./users/userRouter");
 const postRouter = require("./posts/postRouter");
 
-server.use(logger);
+// server.use(logger);
 server.use(express.json());
 server.use(cors());
 
@@ -29,9 +29,7 @@ module.exports = server;
 
 function logger(req, res, next) {
   console.log(
-    `${new Date().toLocaleTimeString()}: ${req.method} Request to ${
-      req.originalUrl
-    }`
+    `${new Date().toLocaleTimeString()}: ${req.method} ${req.originalUrl}`
   );
   next();
 }

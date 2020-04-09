@@ -6,7 +6,6 @@ import "./Post.scss";
 
 function Post(props) {
   const { id, text } = props.post;
-  const history = useHistory();
   const deletePost = (id) => {
     axios.delete(`/api/posts/${id}`).then(() => props.getPosts());
   };

@@ -8,15 +8,18 @@ function UserProfile(props) {
   const [posts, setPosts] = useState([]);
   const [name, setName] = useState("");
   const { id } = match.params;
+  const getPosts = () => {
+    axios.get(`/api/users/${id}/posts`).then(({ data }) => setPosts(data));
+  };
   useEffect(() => {
     axios.get(`/api/users/${id}`).then(({ data }) => setName(data.name));
-    axios.get(`/api/users/${id}/posts`).then(({ data }) => setPosts(data));
+    getPosts();
   }, []);
   return (
     <div className="user-profile">
       <h3>{name}</h3>
       {posts.map((p) => (
-        <Post key={p.id} post={p} />
+        <Post key={p.id} post={p} getPosts={getPosts} />
       ))}
     </div>
   );

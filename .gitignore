@@ -59,4 +59,4 @@ typings/
 
 # Mac files
 .DS_Store
-*.db3
+# *.db3

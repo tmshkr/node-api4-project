@@ -1,0 +1,26 @@
+div.users-list {
+  padding: 0 1rem;
+  max-width: 800px;
+  margin: auto;
+  header {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    h2 {
+      margin: 0 0 0 1rem;
+    }
+  }
+  tr.user {
+    cursor: pointer;
+  }
+  td button {
+    float: right;
+    margin: 0 0 0 1rem;
+  }
+  table.table td {
+    vertical-align: middle;
+    &:last-child {
+      width: 10rem;
+    }
+  }
+}
